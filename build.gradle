@@ -1,25 +1,70 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '2.7.17'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+    id 'org.springframework.boot' version '2.7.17'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.hongjungwan'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+    sourceCompatibility = '17'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // Spring Boot 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Spring Data JPA 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Spring Security 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Spring Data Redis 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // Spring WebSocket 의존성
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.0.4.RELEASE'
+
+    // Spring Security OAuth2 의존성
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-core', version: '5.5.2'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.7.5'
+
+    // MySQL 의존성
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // JWT 의존성
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Lombok 의존성
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Json Parsing 의존성
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'org.json:json:20230227'
+
+    // 자바 역직렬화 문제, 해결을 위한 - 의존성
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    // 테스트 환경에서 사용되는 의존성
+    testImplementation 'org.springframework:spring-webflux'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // Swagger/OpenAPI 의존성
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.7'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
